@@ -159,6 +159,100 @@ class SparseMatrix;
     a number of LAPACK functions
 */
 
+DMatrix& operator- (const DMatrix& A);
+DMatrix& colon( double i1, double increment, double i2 );
+DMatrix& colon( int i1, int increment, int i2);
+DMatrix& colon( int i1, int i2 );
+DMatrix& colon( double i1, double i2);
+DMatrix& colon( void );
+int any( const DMatrix& val );
+DMatrix& mpow( DMatrix& A, int p );
+DMatrix& operator *(double Arg, const DMatrix& A);
+DMatrix& tra(const DMatrix& A);
+DMatrix& inv(const DMatrix& A);
+DMatrix& pinv(const DMatrix& A);
+DMatrix& identity(long n);
+DMatrix& identity(long n, long m);
+DMatrix& eye(long n);
+DMatrix& eye(long n,long m);
+DMatrix& zeros(long n, long m);
+DMatrix& ones(long n, long m);
+DMatrix& expm(const DMatrix& A);
+DMatrix& sin(const DMatrix& A);
+DMatrix& cos(const DMatrix& A);
+DMatrix& tan(const DMatrix& A);
+DMatrix& exp(const DMatrix& A);
+DMatrix& log(const DMatrix& A);
+DMatrix& diag( const DMatrix& A );
+DMatrix& TProduct(const DMatrix& A,const DMatrix& B);
+DMatrix& ProductT(const DMatrix& A,const DMatrix& B);
+DMatrix& TProductT(const DMatrix& A,const DMatrix& B);
+DMatrix& Product(const DMatrix& A,const DMatrix& B);
+DMatrix& LUSolve(const DMatrix& A ,const DMatrix& b );
+DMatrix& LUFSolve(const DMatrix& ALU ,const DMatrix& b );
+DMatrix& CholSolve( const DMatrix& A, const DMatrix &b );
+DMatrix& CholFSolve( const DMatrix& Achol, const DMatrix &b );
+DMatrix& Chol( const DMatrix& A  );
+DMatrix& CholeskyRoot(const DMatrix& A );
+DMatrix& QRSolve( const DMatrix& A, const DMatrix &b );
+DMatrix& QRFSolve( const DMatrix& A, const DMatrix &b );
+DMatrix& QR( const DMatrix& A );
+DMatrix& LQ( const DMatrix& A, DMatrix* Q );
+DMatrix& LU( const DMatrix& A  );
+DMatrix& SVD( const DMatrix& A, DMatrix* U=NULL, DMatrix* V=NULL );
+DMatrix& orth( const DMatrix& A );
+DMatrix& null( const DMatrix& A );
+DMatrix& SVDSolve( const DMatrix& A, const DMatrix& B );
+DMatrix& schur(const DMatrix& A, DMatrix* U=NULL  );
+DMatrix& eig(const DMatrix& A, DMatrix* V=NULL );
+double enorm(const DMatrix& A);
+double norm(const DMatrix& A);
+DMatrix& Abs(const DMatrix& A);
+double Max(const DMatrix& A,int* rindx=NULL, int* cindx=NULL);
+double MaxAbs(const DMatrix& A, int* rindx=NULL, int* cindx=NULL);
+double Min(const DMatrix& A, int* rindx=NULL, int* cindx=NULL );
+double MinAbs(const DMatrix& A, int* rindx=NULL, int* cindx=NULL);
+void   sort( DMatrix& A, int indx[]=NULL);
+void   sort( DMatrix& A, DMatrix& indx);
+double InfNorm(const DMatrix& A);
+double Fnorm(  const DMatrix& A);
+double dotProduct( const DMatrix& A, const DMatrix& B );
+int isSymmetric( const DMatrix& A );
+double cond( const DMatrix& A );
+double rcond( const DMatrix& A );
+int rank( const DMatrix& A );
+double det(  const DMatrix& A );
+double trace( const DMatrix& A );
+DMatrix& mean( const DMatrix& A );
+DMatrix& Std(  const DMatrix& A, int ntype=0 );
+DMatrix& cov( const DMatrix& A, int ntype=0 );
+DMatrix& cov(DMatrix& X, DMatrix& Y, int ntype=0 );
+DMatrix& var(DMatrix& A, int ntype=0);
+DMatrix& sum(  const DMatrix& A );
+DMatrix& prod(  const DMatrix& A );
+DMatrix& elemProduct( const DMatrix& A, const DMatrix& B );
+DMatrix& elemDivision( const DMatrix& A, const DMatrix& B);
+DMatrix& kronProduct( const DMatrix& A, const DMatrix& B );
+DMatrix& vec( const DMatrix& A );
+DMatrix& MatrixSign( const DMatrix& A );
+DMatrix&  find(const DMatrix& A);
+DMatrix& randu(long n, long m);
+DMatrix& randn(long n, long m);
+DMatrix& linspace(double X1, double X2, long N);
+DMatrix& LSMNSolve( const DMatrix& A, const DMatrix& B );
+void error_message(const char *input_text);
+void tic(void);
+double toc();
+#ifdef MATLAB_MEX_FILE
+void mxArray2DMatrix( DMatrix& A, mxArray* mx );
+void DMatrix2mxArray( const char* Name, mxArray* mx, DMatrix& A );
+#endif
+DMatrix& Sqrt(const DMatrix& A);
+DMatrix& triu(const DMatrix& A);
+DMatrix& reshape(DMatrix& A, long nn, long mm);
+long length(const DMatrix& A);
+void* my_calloc(size_t num, size_t size );
+
 
 class DMatrix {         // define DMatrix class
 
@@ -1368,7 +1462,7 @@ public:
       \param  V is a pointer to a DMatrix object, which is modified on output to contain the V factor of the decomposition.
       \return Reference to a temporary DMatrix object with a vector that contains the singular values of matrix A.
   */
-   friend DMatrix& SVD( const DMatrix& A, DMatrix* U=NULL, DMatrix* V=NULL );
+   friend DMatrix& SVD( const DMatrix& A, DMatrix* U, DMatrix* V );
    //! This function returns Q, the orthonormal basis for the range of a matrix A, such that \f$ Q Q' = I \f$. The number of columns of Q is the rank of A.
    /**
    	\param A is a DMatrix object
@@ -1395,14 +1489,14 @@ public:
       \param  U is a pointer to a DMatrix object.
       \return Reference to a temporary DMatrix object with the unitary matrix Q.
   */
-   friend DMatrix& schur(const DMatrix& A, DMatrix* U= NULL  );
+   friend DMatrix& schur(const DMatrix& A, DMatrix* U  );
    //!  This function computes the eigenvalues and (optionally) the eigenvectors of a matrix A. This function uses the LAPACK routines dsyev_() and dgeev_.
   /**
       \param  A is a DMatrix object.
       \param  V is a pointer to a DMatrix object.
       \return Reference to a temporary DMatrix object with the real part of the eigenvalues in the first column and the complex part of the eigenvalues in the second column.
   */
-   friend DMatrix& eig(const DMatrix& A, DMatrix* V= NULL  );
+   friend DMatrix& eig(const DMatrix& A, DMatrix* V );
    //!  This function computes and return the Euclidean norm of a matrix A, which is the square root of the sum of its squared elements.
   /**
       \param  A is a DMatrix object.
@@ -1440,7 +1534,7 @@ public:
       \param  cindx is an optional pointer to an integer which is modified with the column index.
       \return the value of the element with maximum value.
   */
-   friend double Max(const DMatrix& A,int* rindx=NULL, int* cindx=NULL);
+   friend double Max(const DMatrix& A,int* rindx, int* cindx);
    //!  This function finds and returns the element of matrix A with maximum absolute value. It also returns the indices of such element. If more than one element has the same maximum absolute value, the indices of the first element found when searching column by column is returned.
   /**
       \param  A is a DMatrix object.
@@ -1448,7 +1542,7 @@ public:
       \param  cindx is a pointer to an integer which is modified with the column index.
       \return the absolute value of the element with maximum absolute value.
   */
-   friend double MaxAbs(const DMatrix& A, int* rindx=NULL, int* cindx=NULL);
+   friend double MaxAbs(const DMatrix& A, int* rindx, int* cindx);
    //!  This function finds and returns the element of matrix A with minimum value. It also returns the indices of such element.  If more than one element has the same minimum value, the indices of the first element found when searching column by column is returned.
   /**
       \param  A is a DMatrix object.
@@ -1456,7 +1550,7 @@ public:
       \param  cindx is a pointer to an integer which is modified with the column index.
       \return the absolute value of the element with minimum absolute value.
   */
-   friend double Min(const DMatrix& A, int* rindx=NULL, int* cindx=NULL );
+   friend double Min(const DMatrix& A, int* rindx, int* cindx );
    //!  This function finds and returns the element of matrix A with minimum absolute value. It also returns the indices of such element.  If more than one element has the same minimum absolute value, the indices of the first element found when searching column by column is returned.
   /**
       \param  A is a DMatrix object.
@@ -1464,14 +1558,14 @@ public:
       \param  cindx is a pointer to an integer which is modified with the column index.
       \return the absolute value of the element with minimum absolute value.
   */
-   friend double MinAbs(const DMatrix& A, int* rindx=NULL, int* cindx=NULL);
+   friend double MinAbs(const DMatrix& A, int* rindx, int* cindx);
    //!  This function sorts the input vector x in ascending order. Optionally, it also returns an integer array of sorted indices. If the input object is not a vector, then an error is thrown.
   /**
       \param  x is a DMatrix object which upon input contains the unsorted vector and upon output contains the sorted vector.
       \param  indx is a pointer to the first element of the array of sorted indices.
       \return void
   */
-   friend void   sort( DMatrix& x, int indx[] = NULL);
+   friend void   sort( DMatrix& x, int indx[]);
    //!  This function sorts the input vector x in ascending order. It also returns a DMatrix object with the sorted indices. If the input object is not a vector, then an error is thrown.
   /**
       \param  x is a DMatrix object which upon input contains the unsorted vector and upon output contains the sorted vector.
@@ -1555,14 +1649,14 @@ public:
       \param  ntype is the type of normalization, 0 (default) or 1.
       \return a temporary DMatrix object with the result of the operation
   */
-   friend DMatrix& Std(  const DMatrix& A, int ntype=0 );
+   friend DMatrix& Std(  const DMatrix& A, int ntype );
    //!  Computes the covariance matrix of a data matrix where the N rows correspond to samples and the M columns are variables. The result is returned as an M x M matrix. If ntype=0 (default) then the result is normalised with N-1. Otherwise, if ntype=1, the  result is normalised with N.
   /**
       \param  A is a DMatrix object.
       \param  ntype is the type of normalization, 0 (default) or 1.
       \return a temporary DMatrix object with the result of the operation
   */
-   friend DMatrix& cov( const DMatrix& A, int ntype=0 );
+   friend DMatrix& cov( const DMatrix& A, int ntype );
    //!  Computes the covariance matrix of two vectors X and Y of dimension N. The result is returned as an 1 x 1 DMatrix object. If ntype=0 (default) then the result is normalised with N-1. Otherwise, if ntype=1, the  result is normalised with N.
   /**
       \param  X is a DMatrix object.
@@ -1570,14 +1664,14 @@ public:
       \param  ntype is the type of normalization, 0 (default) or 1.
       \return a temporary DMatrix object with the result of the operation
   */
-   friend DMatrix& cov(DMatrix& X, DMatrix& Y, int ntype=0 );
+   friend DMatrix& cov(DMatrix& X, DMatrix& Y, int ntype );
    //!  This function returns a row vector with the variance of each column of matrix A. If ntype is 0 (default) the result is normalised with (n-1), where n is the number of rows of A. Otherwise, the result is normalised with n.
   /**
       \param  A is a DMatrix object.
       \param  ntype is the type of normalization, 0 (default) or 1.
       \return a temporary DMatrix object with the result of the operation
   */
-   friend DMatrix& var(DMatrix& A, int ntype=0 );
+   friend DMatrix& var(DMatrix& A, int ntype );
    //!  This function returns a row vector with the sum of the elements of each column of matrix A.
   /**
       \param  A is a DMatrix object.
@@ -1736,99 +1830,7 @@ void CholeskyDecomp(DMatrix& a, int n, DMatrix& pM);
 void CholeskySolution(const DMatrix& a, int n, const DMatrix& pM,
                          const DMatrix& bM, DMatrix& xM);
 void Hessemberg(DMatrix& a );
-DMatrix& operator- (const DMatrix& A);
-DMatrix& colon( double i1, double increment, double i2 );
-DMatrix& colon( int i1, int increment, int i2);
-DMatrix& colon( int i1, int i2 );
-DMatrix& colon( double i1, double i2);
-DMatrix& colon( void );
-int any( const DMatrix& val );
-DMatrix& mpow( DMatrix& A, int p );
-DMatrix& operator *(double Arg, const DMatrix& A);
-DMatrix& tra(const DMatrix& A);
-DMatrix& inv(const DMatrix& A);
-DMatrix& pinv(const DMatrix& A);
-DMatrix& identity(long n);
-DMatrix& identity(long n, long m);
-DMatrix& eye(long n);
-DMatrix& eye(long n,long m);
-DMatrix& zeros(long n, long m);
-DMatrix& ones(long n, long m);
-DMatrix& expm(const DMatrix& A);
-DMatrix& sin(const DMatrix& A);
-DMatrix& cos(const DMatrix& A);
-DMatrix& tan(const DMatrix& A);
-DMatrix& exp(const DMatrix& A);
-DMatrix& log(const DMatrix& A);
-DMatrix& diag( const DMatrix& A );
-DMatrix& TProduct(const DMatrix& A,const DMatrix& B);
-DMatrix& ProductT(const DMatrix& A,const DMatrix& B);
-DMatrix& TProductT(const DMatrix& A,const DMatrix& B);
-DMatrix& Product(const DMatrix& A,const DMatrix& B);
-DMatrix& LUSolve(const DMatrix& A ,const DMatrix& b );
-DMatrix& LUFSolve(const DMatrix& ALU ,const DMatrix& b );
-DMatrix& CholSolve( const DMatrix& A, const DMatrix &b );
-DMatrix& CholFSolve( const DMatrix& Achol, const DMatrix &b );
-DMatrix& Chol( const DMatrix& A  );
-DMatrix& CholeskyRoot(const DMatrix& A );
-DMatrix& QRSolve( const DMatrix& A, const DMatrix &b );
-DMatrix& QRFSolve( const DMatrix& A, const DMatrix &b );
-DMatrix& QR( const DMatrix& A );
-DMatrix& LQ( const DMatrix& A, DMatrix* Q );
-DMatrix& LU( const DMatrix& A  );
-DMatrix& SVD( const DMatrix& A, DMatrix* U, DMatrix* V );
-DMatrix& orth( const DMatrix& A );
-DMatrix& null( const DMatrix& A );
-DMatrix& SVDSolve( const DMatrix& A, const DMatrix& B );
-DMatrix& schur(const DMatrix& A, DMatrix* U  );
-DMatrix& eig(const DMatrix& A, DMatrix* V  );
-double enorm(const DMatrix& A);
-double norm(const DMatrix& A);
-DMatrix& Abs(const DMatrix& A);
-double Max(const DMatrix& A,int* rindx, int* cindx);
-double MaxAbs(const DMatrix& A, int* rindx, int* cindx);
-double Min(const DMatrix& A, int* rindx, int* cindx );
-double MinAbs(const DMatrix& A, int* rindx, int* cindx);
-void   sort( DMatrix& A, int indx[]);
-void   sort( DMatrix& A, DMatrix& indx);
-double InfNorm(const DMatrix& A);
-double Fnorm(  const DMatrix& A);
-double dotProduct( const DMatrix& A, const DMatrix& B );
-int isSymmetric( const DMatrix& A );
-double cond( const DMatrix& A );
-double rcond( const DMatrix& A );
-int rank( const DMatrix& A );
-double det(  const DMatrix& A );
-double trace( const DMatrix& A );
-DMatrix& mean( const DMatrix& A );
-DMatrix& Std(  const DMatrix& A, int ntype );
-DMatrix& cov( const DMatrix& A, int ntype );
-DMatrix& cov(DMatrix& X, DMatrix& Y, int ntype );
-DMatrix& var(DMatrix& A, int ntype);
-DMatrix& sum(  const DMatrix& A );
-DMatrix& prod(  const DMatrix& A );
-DMatrix& elemProduct( const DMatrix& A, const DMatrix& B );
-DMatrix& elemDivision( const DMatrix& A, const DMatrix& B);
-DMatrix& kronProduct( const DMatrix& A, const DMatrix& B );
-DMatrix& vec( const DMatrix& A );
-DMatrix& MatrixSign( const DMatrix& A );
-DMatrix&  find(const DMatrix& A);
-DMatrix& randu(long n, long m);
-DMatrix& randn(long n, long m);
-DMatrix& linspace(double X1, double X2, long N);
-DMatrix& LSMNSolve( const DMatrix& A, const DMatrix& B );
-void error_message(const char *input_text);
-void tic(void);
-double toc();
-#ifdef MATLAB_MEX_FILE
-void mxArray2DMatrix( DMatrix& A, mxArray* mx );
-void DMatrix2mxArray( const char* Name, mxArray* mx, DMatrix& A );
-#endif
-DMatrix& Sqrt(const DMatrix& A);
-DMatrix& triu(const DMatrix& A);
-DMatrix& reshape(DMatrix& A, long nn, long mm);
-long length(const DMatrix& A);
-void* my_calloc(size_t num, size_t size );
+
 
 
 // ===========================================================
@@ -1909,6 +1911,34 @@ int dgelqf_(integer *m, integer *n, doublereal *a, integer *
     A C++ class for sparse numerical linear algebra with interfaces to
     a number of CXSparse and LUSOL functions
 */
+
+SparseMatrix& tra(const SparseMatrix& A);
+SparseMatrix& inv(SparseMatrix& A);
+SparseMatrix& Product(const SparseMatrix& A,const  SparseMatrix& B);
+SparseMatrix& sparse(DMatrix& A);
+SparseMatrix& speye(int n);
+SparseMatrix& spones(const SparseMatrix& s);
+SparseMatrix& spconvert(DMatrix& A);
+DMatrix& full(const SparseMatrix& A);
+DMatrix& null( const SparseMatrix& A );
+DMatrix& SVD(const SparseMatrix& A, DMatrix* U=NULL, DMatrix* V=NULL );
+DMatrix& QR( const SparseMatrix& A );
+DMatrix& LQ( const SparseMatrix& A, DMatrix* Q );
+DMatrix& orth( const SparseMatrix& A );
+DMatrix& schur(const SparseMatrix& A, DMatrix* U=NULL  );
+DMatrix& eig(const SparseMatrix& A, DMatrix* V=NULL  );
+double enorm(const SparseMatrix& A);
+double norm(const SparseMatrix& A);
+SparseMatrix& Abs(const SparseMatrix& A);
+double cond( const SparseMatrix& A );
+double rcond( const SparseMatrix& A );
+int rank( const SparseMatrix& A );
+SparseMatrix& sprand(const SparseMatrix& S);
+SparseMatrix& sprand(int n, int m, double density);
+SparseMatrix& sprandn(const SparseMatrix& S);
+SparseMatrix& sprandn(int n, int m, double density);
+SparseMatrix& operator *(double Arg, const SparseMatrix& A);
+
 class SparseMatrix {
 protected:
 //! Array to store matrix elements
@@ -2167,7 +2197,7 @@ public:
       \param  V is a pointer to a DMatrix object, which is modified on output to contain the V factor of the decomposition.
       \return Reference to a temporary DMatrix object with a vector that contains the singular values of matrix A.
   */
-   friend DMatrix& SVD(const SparseMatrix& A, DMatrix* U=NULL, DMatrix* V=NULL );
+   friend DMatrix& SVD(const SparseMatrix& A, DMatrix* U, DMatrix* V );
   //! Returns the QR factorisation of a sparse matrix A. The number of rows of matrix A must be greater or equal than the number of columns.
   /**
       \param  A is a SparseMatrix object·
@@ -2193,14 +2223,14 @@ public:
       \param  U is a pointer to a DMatrix object.
       \return Reference to a temporary DMatrix object with the unitary matrix Q.
   */
-   friend DMatrix& schur(const SparseMatrix& A, DMatrix* U= NULL  );
+   friend DMatrix& schur(const SparseMatrix& A, DMatrix* U  );
    //!  This function computes the eigenvalues and (optionally) the eigenvectors of a sparse matrix A. This function uses the LAPACK routines dsyev_() and dgeev_.
   /**
       \param  A is a SparseMatrix object.
       \param  V is a pointer to a DMatrix object.
       \return Reference to a temporary DMatrix object with the real part of the eigenvalues in the first column and the complex part of the eigenvalues in the second column.
   */
-   friend DMatrix& eig(const SparseMatrix& A, DMatrix* V= NULL  );
+   friend DMatrix& eig(const SparseMatrix& A, DMatrix* V  );
    //!  This function computes and return the Euclidean norm of a sparse matrix A, which is the square root of the sum of its (nonzero) squared elements.
   /**
       \param  A is a SparseMatrix object.
@@ -2455,32 +2485,7 @@ SparseMatrix& ProductT(SparseMatrix& A, SparseMatrix& B);
 
 SparseMatrix& elemProduct(const SparseMatrix A, const SparseMatrix& B);
 
-SparseMatrix& tra(const SparseMatrix& A);
-SparseMatrix& inv(SparseMatrix& A);
-SparseMatrix& Product(const SparseMatrix& A,const  SparseMatrix& B);
-SparseMatrix& sparse(DMatrix& A);
-SparseMatrix& speye(int n);
-SparseMatrix& spones(const SparseMatrix& s);
-SparseMatrix& spconvert(DMatrix& A);
-DMatrix& full(const SparseMatrix& A);
-DMatrix& null( const SparseMatrix& A );
-DMatrix& SVD(const SparseMatrix& A, DMatrix* U, DMatrix* V );
-DMatrix& QR( const SparseMatrix& A );
-DMatrix& LQ( const SparseMatrix& A, DMatrix* Q );
-DMatrix& orth( const SparseMatrix& A );
-DMatrix& schur(const SparseMatrix& A, DMatrix* U  );
-DMatrix& eig(const SparseMatrix& A, DMatrix* V  );
-double enorm(const SparseMatrix& A);
-double norm(const SparseMatrix& A);
-SparseMatrix& Abs(const SparseMatrix& A);
-double cond( const SparseMatrix& A );
-double rcond( const SparseMatrix& A );
-int rank( const SparseMatrix& A );
-SparseMatrix& sprand(const SparseMatrix& S);
-SparseMatrix& sprand(int n, int m, double density);
-SparseMatrix& sprandn(const SparseMatrix& S);
-SparseMatrix& sprandn(int n, int m, double density);
-SparseMatrix& operator *(double Arg, const SparseMatrix& A);
+
 
 
 // ===========================================================
@@ -2511,6 +2516,3 @@ class ErrorHandler
 
 
 #endif /* DMATRIX_H */
-
-
-
