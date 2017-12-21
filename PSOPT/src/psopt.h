@@ -900,9 +900,9 @@ void plot(DMatrix& x1, DMatrix& y1, DMatrix& x2, DMatrix& y2, const string& titl
           char const* xlabel, char const* ylabel, char const* legend=NULL, char const* terminal=NULL, char const* output=NULL);
 
 void plot(DMatrix& x1, DMatrix& y1, DMatrix& x2, DMatrix& y2, DMatrix& x3, DMatrix& y3,
-          const string& title, char const* xlabel, char const* ylabel, char const const* legend=NULL, char const* terminal=NULL, char const* output=NULL);
+          const string& title, char const* xlabel, char const* ylabel, char const* legend=NULL, char const* terminal=NULL, char const* output=NULL);
 
-void multiplot(DMatrix& x, DMatrix& y, const string& title, char const const* xlabel, char const* ylabel, char const* legend, int nrows=0, int ncols=0,  char const* terminal=NULL, char const* output=NULL ) ;
+void multiplot(DMatrix& x, DMatrix& y, const string& title, char const* xlabel, char const* ylabel, char const* legend, int nrows=0, int ncols=0,  char const* terminal=NULL, char const* output=NULL ) ;
 
 void spplot(DMatrix& x1a, DMatrix& y1a, DMatrix& x2a, DMatrix& y2a, const string& title, char const* xlabel, char const* ylabel, char const* legend, char const* terminal=NULL, char const* output=NULL);
 
