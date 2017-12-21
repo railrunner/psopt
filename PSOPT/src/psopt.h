@@ -915,7 +915,7 @@ void polar(DMatrix& theta, DMatrix& r, DMatrix& theta2, DMatrix& r2, const strin
 void polar(DMatrix& theta, DMatrix& r, DMatrix& theta2, DMatrix& r2,  DMatrix& theta3, DMatrix& r3, const string& title,
             char const* legend=NULL, char const* terminal=NULL, char const* output=NULL);
 
-void surf(DMatrix& x, DMatrix& y, DMatrix& z, const string& title, char const* xlabel, char const* ylabel, char const const* zlabel, char const* terminal=NULL, char const* output=NULL, char const* view=NULL);
+void surf(DMatrix& x, DMatrix& y, DMatrix& z, const string& title, char const* xlabel, char const* ylabel, char const* zlabel, char const* terminal=NULL, char const* output=NULL, char const* view=NULL);
 
 void plot3(DMatrix& x, DMatrix& y, DMatrix& z, const string& title, char const* xlabel, char const* ylabel, char const* zlabel, char const* terminal=NULL, char const* output=NULL, char const* view=NULL);
 
