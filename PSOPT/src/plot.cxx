@@ -76,7 +76,7 @@ _CRTIMP  int * __cdecl errno(void) { static int i=0; return &i; };
 using namespace std;
 
 
-void plot(DMatrix& xa, DMatrix& ya, const string& title, char* xlabel, char* ylabel, char* legend, char* terminal, char* output)
+void plot(DMatrix& xa, DMatrix& ya, const string& title, char const* xlabel, char const* ylabel, char const* legend, char const* terminal, char const* output)
 {
 
          DMatrix x = xa;
@@ -174,7 +174,7 @@ void plot(DMatrix& xa, DMatrix& ya, const string& title, char* xlabel, char* yla
 }
 
 
-void multiplot(DMatrix& xa, DMatrix& ya, const string& title, char* xlabel, char* ylabel, char* legend, int nrows, int ncols, char* terminal,  char* output )
+void multiplot(DMatrix& xa, DMatrix& ya, const string& title, char const* xlabel, char const* ylabel, char const* legend, int nrows, int ncols, char const* terminal,  char const* output )
 {
          DMatrix x = xa;
 
@@ -310,7 +310,7 @@ void multiplot(DMatrix& xa, DMatrix& ya, const string& title, char* xlabel, char
 
 
 
-void plot(DMatrix& x1a, DMatrix& y1a, DMatrix& x2a, DMatrix& y2a, const string& title, char* xlabel, char* ylabel, char* legend, char* terminal, char* output)
+void plot(DMatrix& x1a, DMatrix& y1a, DMatrix& x2a, DMatrix& y2a, const string& title, char const* xlabel, char const* ylabel, char const* legend, char const* terminal, char const* output)
 {
 
          DMatrix x1 = x1a;
@@ -450,7 +450,7 @@ void plot(DMatrix& x1a, DMatrix& y1a, DMatrix& x2a, DMatrix& y2a, const string& 
 }
 
 
-void spplot(DMatrix& x1a, DMatrix& y1a, DMatrix& x2a, DMatrix& y2a, const string& title, char* xlabel, char* ylabel, char* legend, char* terminal, char* output)
+void spplot(DMatrix& x1a, DMatrix& y1a, DMatrix& x2a, DMatrix& y2a, const string& title, char const* xlabel, char const* ylabel, char const* legend, char const* terminal, char const* output)
 {
 
          DMatrix x1 = x1a;
@@ -594,7 +594,7 @@ void spplot(DMatrix& x1a, DMatrix& y1a, DMatrix& x2a, DMatrix& y2a, const string
 
 
 void plot(DMatrix& x1a, DMatrix& y1a, DMatrix& x2a, DMatrix& y2a, DMatrix& x3a, DMatrix& y3a,
-          const string& title, char* xlabel, char* ylabel, char* legend, char* terminal, char* output)
+          const string& title, char const* xlabel, char const* ylabel, char const* legend, char const* terminal, char const* output)
 {
          DMatrix x1 = x1a;
 	 DMatrix y1 = y1a;
@@ -774,7 +774,7 @@ void plot(DMatrix& x1a, DMatrix& y1a, DMatrix& x2a, DMatrix& y2a, DMatrix& x3a, 
 }
 
 
-void polar(DMatrix& theta_a, DMatrix& r_a, const string& title,  char* legend, char* terminal, char* output)
+void polar(DMatrix& theta_a, DMatrix& r_a, const string& title,  char const* legend, char const* terminal, char const* output)
 {
          DMatrix theta = theta_a;
 	 DMatrix r = r_a;
@@ -870,7 +870,7 @@ void polar(DMatrix& theta_a, DMatrix& r_a, const string& title,  char* legend, c
 }
 
 
-void polar(DMatrix& theta_a, DMatrix& r_a, DMatrix& theta2_a, DMatrix& r2_a, const string& title,  char* legend, char* terminal, char* output)
+void polar(DMatrix& theta_a, DMatrix& r_a, DMatrix& theta2_a, DMatrix& r2_a, const string& title,  char const* legend, char const* terminal, char const* output)
 {
          DMatrix theta = theta_a;
 
@@ -1020,7 +1020,7 @@ void polar(DMatrix& theta_a, DMatrix& r_a, DMatrix& theta2_a, DMatrix& r2_a, con
 }
 
 
-void polar(DMatrix& theta_a, DMatrix& r_a, DMatrix& theta2_a, DMatrix& r2_a, DMatrix& theta3_a, DMatrix& r3_a, const string& title,  char* legend, char* terminal, char* output)
+void polar(DMatrix& theta_a, DMatrix& r_a, DMatrix& theta2_a, DMatrix& r2_a, DMatrix& theta3_a, DMatrix& r3_a, const string& title,  char const* legend, char const* terminal, char const* output)
 {
 
          DMatrix theta = theta_a;
@@ -1232,7 +1232,7 @@ void polar(DMatrix& theta_a, DMatrix& r_a, DMatrix& theta2_a, DMatrix& r2_a, DMa
 
 
 
-void surf(DMatrix& xa, DMatrix& ya, DMatrix& za, const string& title, char* xlabel, char* ylabel, char* zlabel, char* terminal, char* output, char* view)
+void surf(DMatrix& xa, DMatrix& ya, DMatrix& za, const string& title, char const* xlabel, char const* ylabel, char const* zlabel, char const* terminal, char const* output, char const* view)
 {
 	 // This function creates surface plots given the co-ordinate values (x,y) and the height matrix z.
 
@@ -1327,7 +1327,7 @@ void surf(DMatrix& xa, DMatrix& ya, DMatrix& za, const string& title, char* xlab
 
 }
 
-void plot3(DMatrix& xa, DMatrix& ya, DMatrix& za, const string& title, char* xlabel, char* ylabel, char* zlabel, char* terminal, char* output, char* view)
+void plot3(DMatrix& xa, DMatrix& ya, DMatrix& za, const string& title, char const* xlabel, char const* ylabel, char const* zlabel, char const* terminal, char const* output, char const* view)
 {
 	 // This function creates 3d plots given the co-ordinate values (x,y) and the height vector z.
 
